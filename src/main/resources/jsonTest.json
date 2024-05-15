@@ -1,0 +1,37 @@
+{
+  "upsertUser": {
+    "firstName": "Aziz",
+    "lastName": "Auezov",
+    "email": "a.auezov@uz-kor.com",
+    "password": "1234Aziz$"
+  },
+  "categoryDTO": {
+    "categoryName": "Technology"
+  },
+  "upsertNewsDTO": {
+    "title": "Spring boot updated to 3 version",
+    "content": "Spring Boot 2 application to Spring Boot 3 can bring benefits such as improved performance, security, and support for new features",
+    "author": {
+      "firstName": "Aziz",
+      "lastName": "Auezov",
+      "email": "a.auezov@uz-kor.com"
+    },
+    "categories": [
+      {
+        "categoryName": "Technology"
+      }
+    ]
+  },
+  "commentDto": {
+    "content": "Java is better than other",
+    "user": {
+      "firstName": "Aziz",
+      "lastName": "Auezov",
+      "email": "a.auezov@uz-kor.com"
+    },
+    "news": {
+      "title": "Spring boot updated to 3 version",
+      "content": "Spring Boot 2 application to Spring Boot 3 can bring benefits such as improved performance, security, and support for new features"
+    }
+  }
+}
