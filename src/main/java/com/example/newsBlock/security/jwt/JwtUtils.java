@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.text.MessageFormat;
 import java.time.Duration;
 import java.util.Date;
 
@@ -18,15 +19,30 @@ public class JwtUtils {
     @Value("${app.jwt.tokenExpiration}")
     private Duration tokenExpiration;
     public String generateJwtToken(AppUserDetails userDetails){
-     return generateTokenFromUserName(userDetails.getUsername());
+        var string = userDetails.getUsername();
+        userDetails.getAuthorities().forEach(System.out::println);
+        log.info(string);
+     return generateTokenFromUserName(string);
     }
 
     public String generateTokenFromUserName(String username) {
-        return Jwts.builder().setSubject(username)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime()+tokenExpiration.toMillis()))
+        long expirationTimeInMillis = tokenExpiration.toMillis();
+        long currentTimeInMillis = new Date().getTime();
+        long expirationDateInMillis = currentTimeInMillis + expirationTimeInMillis;
+
+        Date expirationDate = new Date(expirationDateInMillis);
+
+        log.info("Current time in millis: " + currentTimeInMillis);
+        log.info("Token expiration time in millis: " + expirationTimeInMillis);
+        log.info("Expiration date: " + expirationDate);
+        String token = Jwts.builder()
+                .setSubject(username)
+                .setIssuedAt(new Date(currentTimeInMillis))
+                .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
+        log.info(MessageFormat.format("utils {0}", token));
+        return token;
     }
     public String getUsername(String token){
         return Jwts.parser().setSigningKey(jwtSecret)
@@ -48,6 +64,7 @@ public class JwtUtils {
         catch (IllegalArgumentException e){
             log.error("Claims string is empty: {}", e.getMessage());
         }
+        log.info("Filter false");
         return false;
     }
 }

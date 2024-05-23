@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
 public class NewsAspectAop {
     private final NewsServiceImpl newsService;
     @SuppressWarnings("unchecked")
-    @Around(value = "execution(* com.example.newsBlock.restController.NewsController.createNews(..))&& args(newsDTO, userDetails,..)", argNames = "joinPoint,newsDTO,userDetails")
+    @Around(value = "execution(* com.example.newsBlock.restController.NewsController.createNews(..))&& args(newsDTO, userDetails)", argNames = "joinPoint,newsDTO,userDetails")
     public ResponseEntity<NewsDetailDTO> create(ProceedingJoinPoint joinPoint, UpsertNewsDTO newsDTO, UserDetails userDetails) throws Throwable {
         if (userDetails instanceof AppUserDetails user) {
             if (user.getAuthorities().contains(new SimpleGrantedAuthority(RoleType.ROLE_USER.name()))) {

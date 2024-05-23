@@ -22,7 +22,6 @@ public interface UserMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "news", ignore = true)
     @Mapping(target = "comments", ignore = true)
-    @Mapping(target = "roles", ignore = true)
     Users toEntity(UpsertUserDTO upsertUserDTO);
     List<UserDTO> toDtoList(List<Users> users);
 }

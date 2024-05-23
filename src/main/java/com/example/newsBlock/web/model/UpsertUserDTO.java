@@ -1,5 +1,6 @@
 package com.example.newsBlock.web.model;
 
+import com.example.newsBlock.entity.Role;
 import com.example.newsBlock.entity.Users;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -9,6 +10,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldNameConstants;
+
+import java.util.List;
 
 @Data
 @Getter
@@ -27,7 +30,7 @@ public class UpsertUserDTO {
     @Email(message = "Email should be valid")
     private String email;
 
-    private UserDTO user;
+    private List<Role> roles;
 
     @NotNull(message = "Password is required")
     @Size(min = 8, message = "Password must be at least 8 characters")

@@ -16,7 +16,7 @@ spring:
 app:
   jwt:
     secret: "someSecretKey"
-    tokenExpiration: 5s
+    tokenExpiration: 15m
     refreshTokenExpiration: 30m
 server:
   port: 8090

@@ -11,6 +11,7 @@ import com.example.newsBlock.service.UsersService;
 import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
@@ -21,6 +22,7 @@ import java.util.Optional;
 @Service
 public class UsersServiceImpl implements UsersService {
     private final UserRepository userRepository;
+
     @Override
     public Users save(Users user) {
         try {

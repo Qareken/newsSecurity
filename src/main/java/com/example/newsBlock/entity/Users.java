@@ -1,5 +1,6 @@
 package com.example.newsBlock.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
@@ -34,6 +35,7 @@ public class Users {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @Builder.Default
+    @JsonManagedReference
     private List<Role> roles= new ArrayList<>();
 
     @Override

@@ -45,7 +45,7 @@ dependencies {
 //	testImplementation("org.springframework.boot:spring-boot-testcontainers:3.1.3")
 	testImplementation ("org.testcontainers:postgresql")
 	testImplementation ("org.springframework.security:spring-security-test")
-
+	implementation("javax.xml.bind:jaxb-api:2.3.1")
 }
 tasks.test{
 	useJUnitPlatform()

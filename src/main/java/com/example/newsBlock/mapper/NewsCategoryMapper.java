@@ -6,7 +6,7 @@ import com.example.newsBlock.entity.enumurated.Category;
 import com.example.newsBlock.web.model.NewsCategoryDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.springframework.stereotype.Component;
+
 
 
 @Mapper(componentModel = "spring")

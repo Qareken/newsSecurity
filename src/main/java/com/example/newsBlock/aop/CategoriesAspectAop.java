@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
@@ -18,15 +19,14 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class CategoriesAspectAop {
     private final SecurityService securityService;
-    @Pointcut("execution(* com.example.newsBlock.service.impl.NewsCategoryServiceImpl.*(..))&&args(newsCategory,..)")
+    @Pointcut("execution(* com.example.newsBlock.service.impl.NewsCategoryServiceImpl.*(..))&&args(newsCategory)")
     public void updateOrDelete(NewsCategory newsCategory){
     }
-    @Around("updateOrDelete(newsCategory)")
+    @Before(value = "updateOrDelete(newsCategory)", argNames = "newsCategory")
     @SneakyThrows
-    public NewsCategory methodSaveOrUpdateOrDelete(ProceedingJoinPoint joinPoint, NewsCategory newsCategory){
+    public void methodSaveOrUpdateOrDelete( NewsCategory newsCategory){
         if(securityService.isUserRole()){
             throw new ValidException("Access denied");
         }
-        return (NewsCategory) joinPoint.proceed();
     }
 }

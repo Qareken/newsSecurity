@@ -1,6 +1,7 @@
 package com.example.newsBlock.entity;
 
 import com.example.newsBlock.entity.enumurated.RoleType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,6 +22,7 @@ public class Role {
     @JoinColumn(name = "username")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonBackReference
     private Users user;
     public GrantedAuthority toAuthority(){
         return   new SimpleGrantedAuthority(authority.name());
